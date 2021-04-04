@@ -1,1 +1,3 @@
-console.log('Hello Webpack');
+import MasterList from './todo';
+
+const todoLists = new MasterList();
