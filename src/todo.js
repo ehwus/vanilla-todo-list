@@ -23,7 +23,7 @@ class TodoList {
 }
 
 class MasterList {
-  constructor(todoLists = []) {
+  constructor(todoLists = [new TodoList()]) {
     this.todoLists = todoLists;
   }
 }
