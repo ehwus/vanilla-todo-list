@@ -1,3 +1,5 @@
+import Renderer from './renderer';
+
 class Todo {
   constructor(title, description, dueDate, expiryDate) {
     this.title = title;
@@ -23,8 +25,13 @@ class TodoList {
 }
 
 class MasterList {
-  constructor(todoLists = [new TodoList()]) {
+  constructor(todoLists = [new TodoList()], rendererClass = Renderer) {
     this.todoLists = todoLists;
+    this.renderer = new rendererClass();
+  }
+
+  render() {
+    this.renderer.renderPage(this);
   }
 }
 
