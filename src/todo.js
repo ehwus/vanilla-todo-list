@@ -25,9 +25,14 @@ class TodoList {
 }
 
 class MasterList {
-  constructor(todoLists = [new TodoList()], rendererClass = Renderer) {
+  constructor(
+    todoLists = [new TodoList()],
+    rendererClass = Renderer,
+    currentListIndex = 0
+  ) {
     this.todoLists = todoLists;
     this.renderer = new rendererClass();
+    this.currentListIndex = currentListIndex;
   }
 
   render() {
