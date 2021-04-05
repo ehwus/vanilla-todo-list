@@ -1,11 +1,10 @@
 import Renderer from './renderer';
 
-class Todo {
-  constructor(title, description, dueDate, expiryDate) {
+export class Todo {
+  constructor(title, description, dueDate) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
-    this.expiryDate = expiryDate;
   }
 }
 
@@ -16,7 +15,7 @@ class TodoList {
   }
 
   addItem(title, description, dueDate, expiryDate) {
-    this.todoList.append(new Todo(title, description, dueDate, expiryDate));
+    this.todoList.push(new Todo(title, description, dueDate, expiryDate));
   }
 
   removeItem(index) {
@@ -24,20 +23,18 @@ class TodoList {
   }
 }
 
-class MasterList {
+export default class MasterList {
   constructor(
     todoLists = [new TodoList()],
     rendererClass = Renderer,
-    currentListIndex = 0
+    currentProjectIndex = 0
   ) {
     this.todoLists = todoLists;
     this.renderer = new rendererClass();
-    this.currentListIndex = currentListIndex;
+    this.currentProjectIndex = currentProjectIndex;
   }
 
   render() {
     this.renderer.renderPage(this);
   }
 }
-
-export default MasterList;
