@@ -9,9 +9,9 @@ export class Todo {
 }
 
 class TodoList {
-  constructor(todoList = [], name = 'Default') {
-    this.todoList = todoList;
+  constructor(name = 'Default', todoList = []) {
     this.name = name;
+    this.todoList = todoList;
   }
 
   addItem(title, description, dueDate, expiryDate) {
@@ -36,5 +36,9 @@ export default class MasterList {
 
   render() {
     this.renderer.renderPage(this);
+  }
+
+  create(name) {
+    this.todoLists.push(new TodoList(name));
   }
 }
