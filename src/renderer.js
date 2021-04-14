@@ -6,7 +6,7 @@ export default class Renderer {
     const currentProject = listOfProjects[masterList.currentProjectIndex];
     this._clearPage();
     this._renderNavBar(listOfProjects, masterList);
-    this._renderTasks(currentProject);
+    this._renderTasks(currentProject, masterList);
     this._renderNewTask(currentProject, masterList);
     this._renderNewProject(masterList);
   }
@@ -28,12 +28,19 @@ export default class Renderer {
     container.appendChild(nav);
   }
 
-  _renderTasks(currentProject) {
+  _renderTasks(currentProject, masterList) {
     const taskList = document.createElement('UL');
 
-    currentProject.todoList.forEach((task) => {
+    currentProject.todoList.forEach((task, index) => {
       let newTask = document.createElement('LI');
       newTask.innerText = task.title;
+      let deleteButton = document.createElement('button');
+      deleteButton.innerText = 'Delete';
+      deleteButton.addEventListener('click', () => {
+        currentProject.todoList.splice(index, 1);
+        this.renderPage(masterList);
+      });
+      newTask.appendChild(deleteButton);
       taskList.appendChild(newTask);
     });
 
